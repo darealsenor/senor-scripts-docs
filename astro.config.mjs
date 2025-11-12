@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config'
 import starlightThemeRapide from 'starlight-theme-rapide'
 
 export default defineConfig({
+  base: '/',
   integrations: [
     starlight({
       plugins: [starlightThemeRapide()],
