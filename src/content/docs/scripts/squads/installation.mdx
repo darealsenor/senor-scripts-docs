@@ -1,0 +1,46 @@
+---
+title: Installation
+description: Installation guide for the Squads script.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { links } from '../../links.js';
+
+# Installation
+
+<Aside type="note">
+This resource must run after <a href={links.thirdParty.ox_lib}>ox_lib</a>.
+</Aside>
+
+## Prerequisites
+
+- <a href={links.thirdParty.ox_lib}>ox_lib</a>
+
+## File Sytem should look like this
+
+```
+resources/
+  └── senor-squads/
+      ├── client/
+      ├── server/
+      ├── config/
+      ├── bridge/
+      └── fxmanifest.lua
+```
+
+<Aside type="note">
+Keep the resource name as `senor-squads` or it will not work.
+</Aside>
+
+## Start the Resource
+
+```cfg
+ensure senor-squads
+```
+
+## Verify Installation
+
+1. Start server
+2. Join in-game
+3. Use `/squads` command
+4. Menu should open

@@ -1,0 +1,104 @@
+---
+title: Configuration
+description: Complete configuration guide for the Squads script.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Here are the available config files for the squads script. let me know if you need more stuff to be configured.
+
+<Tabs>
+<TabItem label="shared_config.lua">
+
+```lua
+lib.locale()
+
+Shared = {}
+
+Shared.FallbackImage = 'https://avatars.githubusercontent.com/u/71390173?s=400&u=7225af4aa61f4a9b00129f930ed6f38b2dd64cfb&v=4'
+Shared.Language = 'en'
+Shared.MaximumSquadPlayers = 5
+```
+
+</TabItem>
+
+<TabItem label="client_config.lua">
+
+```lua
+lib.locale() -- don't touch please
+Config = {}
+
+Config.Design = {
+    primaryColor = 'hsl(208.8, 88.7%, 45.1%)',
+    buttonBg = 'hsl(208.8, 89%, 36%)',
+    textGradient = 'background: linear-gradient(90deg, hsla(208.8, 2.5%, 95%, 0.75) 0%, hsla(208.8, 2.5%, 62.5%, 0.75) 100%)',
+    containerBackground = 'linear-gradient(360deg, hsl(208.8, 30%, 5%) 0%, hsl(208.8, 30%, 7.5%) 100%)',
+    bgAccent = 'hsla(208.8, 88.7%, 45.1%, 0.05)',
+    validGradient = 'linear-gradient(90deg, rgba(0, 255, 174, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)',
+    joinButton = 'rgba(136, 0, 255, 0.1)',
+    backAccent = 'rgba(255, 0, 0, 0.05)'
+}
+
+Config.Settings = {
+    ['Menu_Command'] = 'squads',
+    ['Relations'] = true,
+    ['Blips'] = true,
+    ['Hud'] = true,
+    ['Tags'] = true,
+    ['TagsDistance'] = 50.0,
+    ['TagColor'] = 18,
+}
+
+Config.DefaultSettings = {
+    hudOpen = true,
+    showNameTags = true,
+    showBlips = true,
+    blipsColor = { hex = '#00FFFF', fivemId = 6 },
+    chatNotifications = true,
+    hudMaxDisplayMode = 'infinity',
+    hudMaxDisplayValue = 4,
+    hudMinimized = false,
+    showRadioIcon = true,
+    hudHealthColor = 'rgba(255, 255, 255, 1)',
+    hudArmorColor = '#0084FF',
+    hudLtr = false,
+    hudPosition = { x = 0, y = 0 },
+    scale = 1.0,
+}
+```
+
+</TabItem>
+
+<TabItem label="server_config.lua">
+
+```lua
+ServerConfig = {}
+
+ServerConfig.NameOptions = {
+    Types = {
+        IC = "IC_NAME",
+        Steam = "STEAM_NAME"
+    },
+    DefaultName = "STEAM_NAME"
+}
+
+ServerConfig.ProfileOptions = {
+    Types = {
+        Steam = "STEAM",
+        Discord = "DISCORD",
+    },
+    DefaultPicture = "STEAM",
+}
+
+ServerConfig.Tokens = {
+    DiscordToken = '',
+    DiscordGuild = '',
+}
+
+ServerConfig.AdminCommandPermission = 'group.admin'
+ServerConfig.VersionCheck = true
+```
+
+</TabItem>
+</Tabs>
+

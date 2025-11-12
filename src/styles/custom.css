@@ -1,0 +1,25 @@
+/* @import '@fontsource/geist-sans';
+@import '@fontsource/geist-mono';
+
+:root {
+	--sl-font: 'Geist Sans', system-ui, sans-serif;
+	--sl-font-mono: 'Geist Mono', 'Courier New', monospace;
+}
+ */
+
+.sl-link img,
+header .sl-link img,
+[data-theme] header .sl-link img,
+header img[alt="Senor Scripts"],
+.sidebar-header img,
+.sl-sidebar img {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  object-fit: cover;
+}
+
+header .sl-link {
+  display: flex;
+  align-items: center;
+}

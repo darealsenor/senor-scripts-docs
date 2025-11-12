@@ -1,0 +1,135 @@
+---
+title: Client Events
+description: Client-side events API for the Squads script.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+# Client Events
+
+<Aside type="danger">
+These events should not be called from other resources - only listen to. Exception: `squads:client:openMenu` and `squad:client:NewMessage` can be triggered.
+</Aside>
+
+## Squad Update
+
+Triggered when a squad is updated (player joined, left, squad modified, etc.).
+
+```lua
+RegisterNetEvent('squad:client:SquadUpdate', function(data)
+    -- data contains the updated squad data
+end)
+```
+
+**Event Data:**
+```lua
+{
+    players = table,
+    name = string,
+    image = string,
+    maxplayers = number,
+    id = number,
+    owner = number
+}
+```
+
+**Example:**
+```lua
+RegisterNetEvent('squad:client:SquadUpdate', function(data)
+    print("Squad updated: " .. data.name)
+    print("Players in squad: " .. #data.players)
+end)
+```
+
+## Squad Update Attributes
+
+Triggered when squad player attributes are updated (health, armor, blips, etc.).
+
+```lua
+RegisterNetEvent('squad:client:SquadUpdateAttributes', function(data)
+    -- data contains the updated squad data with player attributes
+end)
+```
+
+**Event Data:**
+```lua
+{
+    players = table,
+    name = string,
+    image = string,
+    maxplayers = number,
+    id = number,
+    owner = number
+}
+```
+
+**Example:**
+```lua
+RegisterNetEvent('squad:client:SquadUpdateAttributes', function(data)
+    for playerId, playerData in pairs(data.players) do
+        -- playerData contains health, armor, etc.
+    end
+end)
+```
+
+## Squad Removed
+
+Triggered when a player is removed from their squad or the squad is disbanded.
+
+```lua
+RegisterNetEvent('squad:client:SquadRemoved', function()
+    -- Player is no longer in a squad
+end)
+```
+
+**Example:**
+```lua
+RegisterNetEvent('squad:client:SquadRemoved', function()
+    print("Player removed from squad")
+end)
+```
+
+## New Message
+
+Triggered when a new message is sent in the squad chat.
+
+```lua
+RegisterNetEvent('squad:client:NewMessage', function(data)
+    -- data contains the message data
+end)
+```
+
+**Event Data:**
+```lua
+{
+    player = {
+        name = string,
+        serverId = number,
+        image = string,
+        owner = boolean
+    },
+    message = string,
+    time = number
+}
+```
+
+**Example:**
+```lua
+RegisterNetEvent('squad:client:NewMessage', function(data)
+    print(data.player.name .. ": " .. data.message)
+end)
+```
+
+## Open Menu
+
+Trigger this event to open the squad menu for a player.
+
+```lua
+TriggerEvent('squads:client:openMenu')
+```
+
+**Example:**
+```lua
+TriggerEvent('squads:client:openMenu')
+```
+

@@ -1,0 +1,185 @@
+---
+title: Server Events
+description: Server-side events API for the Squads script.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+# Server Events
+
+<Aside type="danger">
+These events should not be called from other resources - only listen to.
+</Aside>
+
+## Squad Created
+
+Triggered when a new squad is created.
+
+```lua
+RegisterNetEvent('squads:server:squadCreated', function(squadId, ownerId, squadData)
+    -- squadId: The squad ID
+    -- ownerId: The owner's server ID
+    -- squadData: The squad data table
+end)
+```
+
+**Event Parameters:**
+- `squadId` (number) - The squad ID
+- `ownerId` (number) - The owner's server ID
+- `squadData` (table) - The squad data table
+
+**Example:**
+```lua
+RegisterNetEvent('squads:server:squadCreated', function(squadId, ownerId, squadData)
+    print("Squad created: " .. squadData.name .. " (ID: " .. squadId .. ")")
+end)
+```
+
+## Player Joined
+
+Triggered when a player joins a squad.
+
+```lua
+RegisterNetEvent('squads:server:playerJoined', function(playerId, squadId, squadData)
+    -- playerId: The player's server ID who joined
+    -- squadId: The squad ID
+    -- squadData: The updated squad data table
+end)
+```
+
+**Event Parameters:**
+- `playerId` (number) - The player's server ID who joined
+- `squadId` (number) - The squad ID
+- `squadData` (table) - The updated squad data table
+
+**Example:**
+```lua
+RegisterNetEvent('squads:server:playerJoined', function(playerId, squadId, squadData)
+    print("Player " .. playerId .. " joined squad: " .. squadData.name)
+end)
+```
+
+## Player Left
+
+Triggered when a player leaves a squad.
+
+```lua
+RegisterNetEvent('squads:server:playerLeft', function(playerId, squadId, squadData)
+    -- playerId: The player's server ID who left
+    -- squadId: The squad ID
+    -- squadData: The updated squad data table (nil if squad was deleted)
+end)
+```
+
+**Event Parameters:**
+- `playerId` (number) - The player's server ID who left
+- `squadId` (number) - The squad ID
+- `squadData` (table | nil) - The updated squad data table, or `nil` if the squad was deleted
+
+**Example:**
+```lua
+RegisterNetEvent('squads:server:playerLeft', function(playerId, squadId, squadData)
+    if squadData then
+        print("Player " .. playerId .. " left squad: " .. squadData.name)
+    end
+end)
+```
+
+## Squad Deleted
+
+Triggered when a squad is deleted/disbanded.
+
+```lua
+RegisterNetEvent('squads:server:squadDeleted', function(squadId, squadData)
+    -- squadId: The squad ID
+    -- squadData: The squad data table before deletion
+end)
+```
+
+**Event Parameters:**
+- `squadId` (number) - The squad ID
+- `squadData` (table) - The squad data table before deletion
+
+**Example:**
+```lua
+RegisterNetEvent('squads:server:squadDeleted', function(squadId, squadData)
+    print("Squad deleted: " .. squadData.name)
+end)
+```
+
+## Squad Edited
+
+Triggered when a squad is edited (name, image, maxplayers, password).
+
+```lua
+RegisterNetEvent('squads:server:squadEdited', function(squadId, editorId, squadData)
+    -- squadId: The squad ID
+    -- editorId: The player's server ID who edited the squad
+    -- squadData: The updated squad data table
+end)
+```
+
+**Event Parameters:**
+- `squadId` (number) - The squad ID
+- `editorId` (number) - The player's server ID who edited the squad
+- `squadData` (table) - The updated squad data table
+
+**Example:**
+```lua
+RegisterNetEvent('squads:server:squadEdited', function(squadId, editorId, squadData)
+    print("Squad edited: " .. squadData.name)
+end)
+```
+
+## Squad Owner Changed
+
+Triggered when a squad's owner changes (when the owner leaves and a new owner is assigned).
+
+```lua
+RegisterNetEvent('squads:server:squadOwnerChanged', function(squadId, oldOwnerId, newOwnerId, squadData)
+    -- squadId: The squad ID
+    -- oldOwnerId: The previous owner's server ID
+    -- newOwnerId: The new owner's server ID
+    -- squadData: The updated squad data table
+end)
+```
+
+**Event Parameters:**
+- `squadId` (number) - The squad ID
+- `oldOwnerId` (number) - The previous owner's server ID
+- `newOwnerId` (number) - The new owner's server ID
+- `squadData` (table) - The updated squad data table
+
+**Example:**
+```lua
+RegisterNetEvent('squads:server:squadOwnerChanged', function(squadId, oldOwnerId, newOwnerId, squadData)
+    print("Squad owner changed: " .. squadData.name)
+end)
+```
+
+## Squad Message
+
+Triggered when a message is sent in squad chat.
+
+```lua
+RegisterNetEvent('squads:server:squadMessage', function(playerId, squadId, message, messageData)
+    -- playerId: The player's server ID who sent the message
+    -- squadId: The squad ID
+    -- message: The message content
+    -- messageData: The complete message data table
+end)
+```
+
+**Event Parameters:**
+- `playerId` (number) - The player's server ID who sent the message
+- `squadId` (number) - The squad ID
+- `message` (string) - The message content
+- `messageData` (table) - The complete message data table
+
+**Example:**
+```lua
+RegisterNetEvent('squads:server:squadMessage', function(playerId, squadId, message, messageData)
+    print("Squad message from player " .. playerId .. ": " .. message)
+end)
+```
+

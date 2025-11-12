@@ -1,0 +1,43 @@
+---
+title: Home
+# template: splash
+---
+
+import { LinkCard, CardGrid } from '@astrojs/starlight/components'
+import { links } from './links.js'
+
+Hi, I'm SENOR.
+I've been developing and scripting for several years, creating various systems and gameplay features for FiveM. Recently, I decided to share and offer some of my work to the community.
+
+## Connect with me
+
+<CardGrid>
+  <LinkCard
+    title="Buy Me a Coffee"
+    href={links.coffee}
+    description="If you like my work and want to support me, you can buy me a coffee."
+    target="_blank"
+    rel="noopener noreferrer"
+  />
+  <LinkCard
+    title="GitHub"
+    href={links.github}
+    description="My GitHub profile — I don't post much there but you might find something."
+    target="_blank"
+    rel="noopener noreferrer"
+  />
+  <LinkCard
+    title="Discord"
+    href={links.discord.link}
+    description={`Join my Discord server or add me as a friend: ${links.discord.username} (${links.discord.id})`}
+    target="_blank"
+    rel="noopener noreferrer"
+  />
+  <LinkCard
+    title="Tebex Shop"
+    href={links.tebex}
+    description="I'm working on filling the shop up — but take a look."
+    target="_blank"
+    rel="noopener noreferrer"
+  />
+</CardGrid>
