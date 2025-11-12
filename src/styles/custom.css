@@ -10,6 +10,7 @@
 .sl-link img,
 header .sl-link img,
 [data-theme] header .sl-link img,
+header .site-title img,
 header img[alt="Senor Scripts"],
 .sidebar-header img,
 .sl-sidebar img {
@@ -19,7 +20,8 @@ header img[alt="Senor Scripts"],
   object-fit: cover;
 }
 
-header .sl-link {
+header .sl-link,
+header .site-title {
   display: flex;
   align-items: center;
 }
